@@ -9,8 +9,8 @@ while juego == True:
     BIENVENIDO AL TRUCO
     =======================
     1. Jugar nueva partida.
-    2. Ver mi historial.
-    3. Ver hstorial general.
+    2. Mi historial.
+    3. Hstorial general.
     4. Salir.
     Seleccione una opción: """)
 
