@@ -59,24 +59,28 @@ def manejar_envido(tipo_oponente: str, envido_jugador: int, envido_oponente: int
 def obtener_carta_valida(num_cartas: int) -> int:
     """
     Obtiene y valida la selección de carta del usuario.
-    
+
     Args:
-        num_cartas: Número de cartas disponibles
-        
+        num_cartas: Número de cartas disponibles.
+
     Returns:
-        int: Índice válido de la carta seleccionada
+        int: Índice válido de la carta seleccionada.
     """
-    while True:
-        try:
-            seleccion = input(f"Seleccione la carta a jugar (1-{num_cartas}): ")
-            if seleccion.strip() == "":
-                continue
+    seguir = True  # Controla el bucle
+    while seguir:
+        seleccion = input(f"Seleccione la carta a jugar (1-{num_cartas}): ").strip()
+        
+        # Validar si la entrada es un número
+        if seleccion.isdigit():
             carta_index = int(seleccion) - 1
+            
+            # Validar rango
             if 0 <= carta_index < num_cartas:
                 return carta_index
-            print(f"Por favor ingrese un número entre 1 y {num_cartas}")
-        except ValueError:
-            print("Por favor ingrese un número válido")
+        
+        # Mensajes de error
+        print(f"Por favor ingrese un número válido entre 1 y {num_cartas}.")
+
 
 def jugar_ronda(
     cartas_jugador: list, cartas_oponente: list, 
@@ -177,7 +181,7 @@ def jugar_partida(nombre_jugador: str, tipo_oponente: str, puntos_maximos: int) 
     Returns:
         dict: Resultado final de la partida
     """
-    mazo = generar_mazo()
+    mazo = generar_mazo(VALORES, PALOS)
     puntos_jugador = 0
     puntos_oponente = 0
     historial_rondas = []
