@@ -3,7 +3,7 @@ import random
 VALORES = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
 PALOS = ["espada", "basto", "oro", "copa"]
 
-def generar_mazo(VALORES, PALOS) -> list:
+def generar_mazo(VALORES: list[int], PALOS: list[int]) -> list:
     """
     Genera el mazo completo con jerarquía de valores del Truco.
     Retorna una lista de diccionarios con información de cada carta.
@@ -50,16 +50,16 @@ def generar_mazo(VALORES, PALOS) -> list:
     "4 oro": 1,
     "4 copa": 1,
     "4 basto": 1
-}
+    }
 
     mazo = []
     for palo in PALOS:
         for valor in VALORES:
-            carta = {}
-            carta["palo"] = palo
-            carta["valor"] = valor
-            clave = f"{valor} {palo}"
-            carta["jerarquia"] = jerarquia[clave]
+            carta = {
+                "palo": palo,
+                "valor": valor,
+                "jerarquia": jerarquia.get(f"{valor} {palo}", 0)
+            }
             mazo.append(carta)
     return mazo
 
